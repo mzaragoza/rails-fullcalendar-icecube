@@ -1,0 +1,13 @@
+config/database.yml
+config/development.yml
+.rspec
+db/*.sql*
+log/*.log
+tmp
+.DS_Store
+.sass-cache
+*~
+*.swp
+*.swo
+*.swn
+chromedriver.log
