@@ -54,6 +54,7 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fullcalendar-rails (1.6.1.0)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -165,6 +166,7 @@ DEPENDENCIES
   debugger
   debugger-ruby_core_source
   decent_exposure
+  fullcalendar-rails
   haml-rails
   ice_cube (= 0.9.3)
   jbuilder

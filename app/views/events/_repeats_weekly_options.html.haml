@@ -1,0 +1,10 @@
+%fieldset{ id: 'repeats_weekly_options', class: 'event_option'}
+  = f.number_field :repeats_every_n_weeks
+  .control-group
+    %label.control-label Each
+    .controls
+      - Event::DaysOfTheWeek.each do |day_of_the_week|
+        = label_tag "event_repeats_weekly_each_days_of_the_week_#{day_of_the_week}", day_of_the_week.humanize, :class => 'checkbox inline' do
+          = check_box_tag "event[repeats_weekly_each_days_of_the_week][#{day_of_the_week}]", day_of_the_week, f.object.repeats_weekly_each_days_of_the_week.include?(day_of_the_week), {:name => "event[repeats_weekly_each_days_of_the_week][]"}
+          = day_of_the_week.humanize
+      = hidden_field_tag "event[repeats_weekly_each_days_of_the_week][]", ""

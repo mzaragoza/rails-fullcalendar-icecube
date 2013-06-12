@@ -1,0 +1,8 @@
+= link_to 'New Event', new_event_path
+%br
+%br
+%br
+- events.each do |e|
+  = link_to e.name, edit_event_path(e)
+  %br
+  %br

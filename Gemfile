@@ -22,6 +22,8 @@ gem 'ice_cube', '0.9.3'
 gem 'squeel', '1.0.16'
 gem 'bootstrap_forms'
 
+gem 'fullcalendar-rails'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

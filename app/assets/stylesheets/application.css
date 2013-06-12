@@ -1,13 +1,32 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
+ *= require jquery.ui.all
+ *= require jquery-minicolors
+ *= require bootstrap_and_overrides
+ *= require fullcalendar
+ *= require fullcalendar.print
  *= require_self
- *= require_tree .
  */
+
+html, body{
+  margin:0px;
+  padding:0px;
+  height:100%;
+  overflow:hidden;
+}
+
+#wrapper{
+  width:978px;
+  text-alight:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+#content{
+  width:778px;
+  height:700px;
+  float:right;
+  padding:20px;
+}
+
+#sidebar{
+  width:200px;
+}
