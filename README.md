@@ -7,3 +7,5 @@ https://github.com/seejohnrun/ice_cube
 
 And Full Calendar
 
+Demo
+http://rails-fullcalendar-icecube.herokuapp.com
