@@ -1,4 +1,5 @@
 .span9
+  = link_to 'New Event', new_event_path, :class => 'btn btn-primary pull-right'
   %h4
     Currently:
     = Time.now.strftime("%v %r")
