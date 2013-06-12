@@ -1,6 +1,4 @@
-
-
-Thanks To Nathan Colgatte
+Thanks To Nathan Colgatte @nathancolgate
 https://gist.github.com/nathancolgate/4998196
 http://www.youtube.com/watch?v=F6t-USuWPag
 
