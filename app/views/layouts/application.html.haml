@@ -41,8 +41,12 @@
               %li= link_to "Calendar", root_path
               %li= link_to "Events", events_path
         .span7
-          = bootstrap_flash
-          = yield
+          .row-fluid
+            .span12
+              = bootstrap_flash
+          .row-fluid
+            .span12
+              = yield
       %footer
         %p &copy; Company 2013
     = javascript_include_tag "application"
