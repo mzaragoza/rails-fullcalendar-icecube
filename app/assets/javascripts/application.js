@@ -14,5 +14,5 @@ $(function() {
   $( ".datepicker" ).datepicker({
     dateFormat: "yy-mm-dd"
   });
-  $( ".timepicker" ).timepicker({ 'timeFormat': '%Y-%n-%d G:i' });
+  $( ".timepicker" ).timepicker({ 'timeFormat': 'h:i A' });
 });

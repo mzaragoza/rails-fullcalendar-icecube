@@ -1,7 +1,9 @@
 class EventInstance
+  include Rails.application.routes.url_helpers
+  extend Rails.application.routes.url_helpers
   include ActiveModel::AttributeMethods
-
-  attr_accessor :title, :start, :end, :allDay, :event_id
+  delegate :url_helpers, to: 'Rails.application.routes'
+  attr_accessor :title, :start, :end, :allDay, :event_id, :color, :url
 
   def self.occurrences_between(begin_date,end_date)
     # Using Squeel
@@ -38,6 +40,8 @@ class EventInstance
       event.schedule.occurrences_between(begin_date,end_date).map { |date|
         i = EventInstance.new()
         i.title = event.name
+        i.color = event.calendar.color
+        i.url = Rails.application.routes.url_helpers.event_path(event)
         i.start = date
         i.end = date + event.duration
         i.allDay = event.is_all_day

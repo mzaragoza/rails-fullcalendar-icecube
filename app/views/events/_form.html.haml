@@ -8,16 +8,15 @@
       = #f.select :host_id, options_from_collection_for_select(Place.all, 'id', 'name', f.object.host_id), include_blank: true
     .span6
       = f.check_box :is_all_day
-      = #f.datepicker :from_date, :class => 'datepicker'
       = f.text_field :from_date, {style: 'width:auto;', :class => 'datepicker'}
       .event_time
-        =# f.text_field :from_time, {style: 'width:auto;', :class => 'timepicker'}
-        = f.time_select :from_time, {:minute_step => 15}, {style: 'width:auto;'}
+        = f.text_field :from_time, {style: 'width:auto;', :class => 'timepicker'}
+        =# f.time_select :from_time, {:minute_step => 15}, {style: 'width:auto;'}
       = f.text_field :to_date, {style: 'width:auto;', :class => 'datepicker'}
       = #f.date_select :to_date, {}, {style: 'width:auto;'}
       .event_time
-        = #f.text_field :to_time, {style: 'width:auto;', :class => 'timepicker'}
-        =  f.time_select :to_time, {:minute_step => 15}, {style: 'width:auto;'}
+        = f.text_field :to_time, {style: 'width:auto;', :class => 'timepicker'}
+        = # f.time_select :to_time, {:minute_step => 15}, {style: 'width:auto;'}
       .event_time
         = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Central Time (US & Canada)"
       = f.select :repeats, Event::RepeatsOptions
