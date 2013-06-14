@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   include IceCubeMethods
   belongs_to :calendar
   attr_accessible :description, :name, :calendar_id
-  validates :name, :presence => true
+  validates_presence_of :name
   def color
     if calendar.color
       calendar.color
