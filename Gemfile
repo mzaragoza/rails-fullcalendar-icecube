@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-rest-rails'
 gem 'jquery-minicolors-rails'
+gem 'jquery_datepicker'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'awesome_print'
@@ -21,7 +22,7 @@ gem 'jbuilder'
 gem 'ice_cube', '0.9.3'
 gem 'squeel', '1.0.16'
 gem 'bootstrap_forms'
-
+gem 'jquery-timepicker-rails'
 gem 'fullcalendar-rails'
 
 group :assets do
@@ -35,5 +36,6 @@ group :development, :test do
   gem 'debugger'
   gem 'debugger-ruby_core_source' #, github: 'cldwalker/debugger-ruby_core_source'
   gem 'populator'
+  gem 'gem-open'
 end
 

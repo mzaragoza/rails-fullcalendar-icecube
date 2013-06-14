@@ -5,10 +5,27 @@
     = Time.now.strftime("%v %r")
   #calendar{:style => 'margin:1em 0;'}
 .span3
+  %h1 Calendars
+  %ul
+    - Calendar.all.each do |c|
+      %li
+        .minicolors-swatch
+          %span{:style => "background-color: #{c.color};"}
+        = c.name
+        = link_to 'x', calendar_path(c), :confirm => 'Are you sure you want to remove the calendar?', :method => :delete
+  %br
+  = simple_form_for(Calendar.new, :html => {:class => 'form-horizontal' }) do |f|
+    = f.input :name, input_html: {:style => 'width:100px;'}
+    %br
+    = #f.input :description
+    = f.input :color, as: :minicolors, input_html: {data: { minicolors: {theme: :bootstrap, swatchPosition: :right}}}
+    %br
+    %br
+    = f.button :submit, :class => 'pull-right'
   %h2 Today's Events
   %ul
     -events.map do |e| 
-      - if e.schedule.occurs_on? Date.today
+      - if e.schedule.occurring_at? Time.now
         %li
           = link_to e.name, event_path(e)
           %i
@@ -18,29 +35,31 @@
           %br
   %h2 Happening Now
   - now = Time.now.strftime('%H%M').to_i
-  -events.map do |e|
-    - if e.schedule.occurs_on? Date.today
-      -if e.is_all_day
-        %li
-          = link_to e.name, event_path(e) 
-          %i
-            = e.from_time.strftime('%I:%M %p')
-            = '-'
-            = e.to_time.strftime('%I:%M %p')
-          %br
-      -else
-        - if e.from_time.strftime('%H%M').to_i <= now && e.to_time.strftime('%H%M').to_i >= now
+  %ul
+    - events.map do |e|
+
+      - if e.schedule.occurring_at? Time.now
+        -if e.is_all_day
           %li
             = link_to e.name, event_path(e) 
             %i
               = e.from_time.strftime('%I:%M %p')
               = '-'
               = e.to_time.strftime('%I:%M %p')
-        -#%li
-          = e.name 
-          = e.from_time.strftime('%I:%M %p')
-          = '-'
-          = e.to_time.strftime('%I:%M %p')
+            %br
+        -else
+          - if e.from_time.strftime('%H%M').to_i <= now && e.to_time.strftime('%H%M').to_i >= now
+            %li
+              = link_to e.name, event_path(e) 
+              %i
+                = e.from_time.strftime('%I:%M %p')
+                = '-'
+                = e.to_time.strftime('%I:%M %p')
+          -#%li
+            = e.name 
+            = e.from_time.strftime('%I:%M %p')
+            = '-'
+            = e.to_time.strftime('%I:%M %p')
         
 - content_for :footer do
   :javascript

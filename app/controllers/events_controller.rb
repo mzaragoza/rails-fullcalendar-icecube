@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     end
   end
   def create
+    #debugger
     e = Event.new(params[:event])
     e.save
     flash[:notice] = 'Event Created'

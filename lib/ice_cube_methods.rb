@@ -136,7 +136,11 @@ module IceCubeMethods
   def schedule(starts_at = nil, ends_at = nil)
     starts_at ||= from
     ends_at ||= to
-    s = IceCube::Schedule.new(starts_at, :ends_time => ends_at)
+    if duration > 0
+      s = IceCube::Schedule.new(starts_at, :ends_time => ends_at, :duration => duration)
+    else
+      s = IceCube::Schedule.new(starts_at, :ends_time => ends_at)
+    end
     case repeats
     when 'never'
       s.add_recurrence_time(starts_at)
