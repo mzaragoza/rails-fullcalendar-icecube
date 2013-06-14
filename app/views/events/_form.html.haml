@@ -1,3 +1,6 @@
+- start_date = params[:start_date].to_datetime.strftime('%F') if params[:start_date]
+- start_time = params[:start_date].to_datetime.strftime('%I:%M %p') if params[:start_date]
+- end_time = (params[:start_date].to_datetime + 30.minutes).strftime('%I:%M %p') if params[:start_date]
 = bootstrap_form_for event, html: {class: 'form-horizontal', novalidate: 'novalidate'} do |f|
   .row
     .span6
@@ -8,14 +11,14 @@
       = #f.select :host_id, options_from_collection_for_select(Place.all, 'id', 'name', f.object.host_id), include_blank: true
     .span6
       = f.check_box :is_all_day
-      = f.text_field :from_date, {style: 'width:auto;', :class => 'datepicker'}
+      = f.text_field :from_date, {style: 'width:auto;', :class => 'datepicker', :value => "#{start_date}"}
       .event_time
-        = f.text_field :from_time, {style: 'width:auto;', :class => 'timepicker'}
+        = f.text_field :from_time, {style: 'width:auto;', :class => 'timepicker', :value => "#{start_time}"}
         =# f.time_select :from_time, {:minute_step => 15}, {style: 'width:auto;'}
-      = f.text_field :to_date, {style: 'width:auto;', :class => 'datepicker'}
+      = f.text_field :to_date, {style: 'width:auto;', :class => 'datepicker', :value => "#{start_date}"}
       = #f.date_select :to_date, {}, {style: 'width:auto;'}
       .event_time
-        = f.text_field :to_time, {style: 'width:auto;', :class => 'timepicker'}
+        = f.text_field :to_time, {style: 'width:auto;', :class => 'timepicker', :value => "#{end_time}"}
         = # f.time_select :to_time, {:minute_step => 15}, {style: 'width:auto;'}
       .event_time
         = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Central Time (US & Canada)"

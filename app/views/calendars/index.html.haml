@@ -62,13 +62,13 @@
             = e.from_time.strftime('%I:%M %p')
             = '-'
             = e.to_time.strftime('%I:%M %p')
-        
 - content_for :footer do
   :javascript
-    function new_event(){
-      alert('moo');
-    }
+      var new_event_link = "#{new_event_path}"
       $('#calendar').fullCalendar({
+        dayClick: function(date, allDay, jsEvent, view) {
+          document.location.href=new_event_link + "?start_date=" + date;
+        },
           header: {
               left: 'prev,today,next',
               center: 'title',
@@ -93,5 +93,8 @@
                 }
             }
           ],
+
           eventResize: this.eventDropOrResize
       });
+      
+
