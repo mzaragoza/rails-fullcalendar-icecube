@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Event do
   calendar = Calendar.create!( name: 'Sample Calendar', color: '#ffff00')
-  it "happends one time" do
+  it "happens one time" do
    event =  Event.create!( name: 'one time event',
                            description: '',
                            is_all_day: false,
@@ -22,9 +22,11 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Sun, 16 Jun 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Tue, 18 Jun 2013 00:00:00 EDT -04:00'])
   end
 
-  it "happends one time all day" do
+  it "happens one time all day" do
    event =  Event.create!( name: 'one time event all day',
                            description: '',
                            is_all_day: true,
@@ -44,9 +46,11 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Mon, 17 Jun 2013 00:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Sun, 16 Jun 2013 00:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Tue, 18 Jun 2013 00:00:00 EDT -04:00'])
   end
 
-  it "happends every 4 days" do
+  it "happens every 4 days" do
    event =  Event.create!( name: 'every 4 day event',
                            description: '',
                            is_all_day: false,
@@ -66,9 +70,11 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00', 'Fri, 21 Jun 2013 09:00:00 EDT -04:00', 'Tue, 25 Jun 2013 09:00:00 EDT -04:00', 'Sat, 29 Jun 2013 09:00:00 EDT -04:00', 'Wed, 03 Jul 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Sun, 16 Jun 2013 09:00:00 EDT -04:00', 'Thu, 20 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Fri, 28 Jun 2013 09:00:00 EDT -04:00', 'Tue, 02 Jul 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Tue, 18 Jun 2013 09:00:00 EDT -04:00', 'Sat, 22 Jun 2013 09:00:00 EDT -04:00', 'Wed, 26 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Thu, 04 Jul 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every weekday" do
+  it "happens every weekday" do
    event =  Event.create!( name: 'every weekday event',
                            description: '',
                            is_all_day: false,
@@ -91,7 +97,7 @@ describe Event do
    expect(event.schedule.first(7)).to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00i', 'Tue, 18 Jun 2013 09:00:00 EDT -04:00', 'Wed, 19 Jun 2013 09:00:00 EDT -04:00', 'Thu, 20 Jun 2013 09:00:00 EDT -04:00', 'Fri, 21 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Tue, 25 Jun 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every weekend" do
+  it "happens every weekend" do
    event =  Event.create!( name: 'every weekend event',
                            description: '',
                            is_all_day: false,
@@ -114,7 +120,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Sat, 22 Jun 2013 09:00:00 EDT -04:00', 'Sun, 23 Jun 2013 09:00:00 EDT -04:00', 'Sat, 29 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Sat, 06 Jul 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every Sunday" do
+  it "happens every Sunday" do
    event =  Event.create!( name: 'every Sunday event',
                            description: '',
                            is_all_day: false,
@@ -137,7 +143,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Sun, 23 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Sun, 07 Jul 2013 09:00:00 EDT -04:00', 'Sun, 14 Jul 2013 09:00:00 EDT -04:00', 'Sun, 21 Jul 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every Monday" do
+  it "happens every Monday" do
    event =  Event.create!( name: 'every Monday event',
                            description: '',
                            is_all_day: false,
@@ -160,7 +166,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Mon, 08 Jul 2013 09:00:00 EDT -04:00', 'Mon, 15 Jul 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every first of the month" do
+  it "happens every first of the month" do
    event =  Event.create!( name: 'the first of the month',
                            description: '',
                            is_all_day: false,
@@ -186,7 +192,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Thu, 01 Aug 2013 09:00:00 EDT -04:00', 'Sun, 01 Sep 2013 09:00:00 EDT -04:00', 'Tue, 01 Oct 2013 09:00:00 EDT -04:00', 'Fri, 01 Nov 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every first  and 15th of the month" do
+  it "happens every first  and 15th of the month" do
    event =  Event.create!( name: 'the first and 15th of the month',
                            description: '',
                            is_all_day: false,
@@ -212,7 +218,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Mon, 15 Jul 2013 09:00:00 EDT -04:00', 'Thu, 01 Aug 2013 09:00:00 EDT -04:00', 'Thu, 15 Aug 2013 09:00:00 EDT -04:00', 'Sun, 01 Sep 2013 09:00:00 EDT -04:00'])
   end
 
-  it "happends every second friday of the month" do
+  it "happens every second friday of the month" do
    event =  Event.create!( name: 'the first and 15th of the month',
                            description: '',
                            is_all_day: false,
@@ -238,7 +244,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Fri, 12 Jul 2013 09:00:00 EDT -04:00', 'Fri, 09 Aug 2013 09:00:00 EDT -04:00', 'Fri, 13 Sep 2013 09:00:00 EDT -04:00', 'Fri, 11 Oct 2013 09:00:00 EDT -04:00', 'Fri, 08 Nov 2013 09:00:00 EST -05:00'])
   end
 
-  it "happends every Dicember" do
+  it "happens every Dicember" do
    event =  Event.create!( name: 'a special day in dec',
                            description: '',
                            is_all_day: false,
@@ -265,7 +271,7 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Tue, 17 Dec 2013 09:00:00 EST -05:00', 'Wed, 17 Dec 2014 09:00:00 EST -05:00', 'Thu, 17 Dec 2015 09:00:00 EST -05:00', 'Sat, 17 Dec 2016 09:00:00 EST -05:00', 'Sun, 17 Dec 2017 09:00:00 EST -05:00'])
   end
 
-  it "happends every third thurdsday" do
+  it "happens every third thurdsday" do
    event =  Event.create!( name: 'a special day in dec',
                            description: '',
                            is_all_day: false,
@@ -294,3 +300,4 @@ describe Event do
    expect(event.schedule.first(5)).to eq(['Fri, 15 Nov 2013 09:00:00 EST -05:00i', 'Thu, 21 Nov 2013 09:00:00 EST -05:00', 'Thu, 20 Nov 2014 09:00:00 EST -05:00', 'Fri, 21 Nov 2014 09:00:00 EST -05:00', 'Thu, 19 Nov 2015 09:00:00 EST -05:00'])
   end
 end
+
