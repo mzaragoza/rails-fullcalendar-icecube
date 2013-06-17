@@ -95,6 +95,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(7)).to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00i', 'Tue, 18 Jun 2013 09:00:00 EDT -04:00', 'Wed, 19 Jun 2013 09:00:00 EDT -04:00', 'Thu, 20 Jun 2013 09:00:00 EDT -04:00', 'Fri, 21 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Tue, 25 Jun 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Sat, 22 Jun 2013 09:00:00 EDT -04:00', 'Sun, 23 Jun 2013 09:00:00 EDT -04:00', 'Sat, 29 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Sat, 06 Jul 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every weekend" do
@@ -118,6 +119,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Sat, 22 Jun 2013 09:00:00 EDT -04:00', 'Sun, 23 Jun 2013 09:00:00 EDT -04:00', 'Sat, 29 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Sat, 06 Jul 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(7)).not_to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00i', 'Tue, 18 Jun 2013 09:00:00 EDT -04:00', 'Wed, 19 Jun 2013 09:00:00 EDT -04:00', 'Thu, 20 Jun 2013 09:00:00 EDT -04:00', 'Fri, 21 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Tue, 25 Jun 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every Sunday" do
@@ -141,6 +143,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Sun, 23 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Sun, 07 Jul 2013 09:00:00 EDT -04:00', 'Sun, 14 Jul 2013 09:00:00 EDT -04:00', 'Sun, 21 Jul 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Mon, 08 Jul 2013 09:00:00 EDT -04:00', 'Mon, 15 Jul 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every Monday" do
@@ -164,6 +167,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Mon, 17 Jun 2013 09:00:00 EDT -04:00', 'Mon, 24 Jun 2013 09:00:00 EDT -04:00', 'Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Mon, 08 Jul 2013 09:00:00 EDT -04:00', 'Mon, 15 Jul 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Sun, 23 Jun 2013 09:00:00 EDT -04:00', 'Sun, 30 Jun 2013 09:00:00 EDT -04:00', 'Sun, 07 Jul 2013 09:00:00 EDT -04:00', 'Sun, 14 Jul 2013 09:00:00 EDT -04:00', 'Sun, 21 Jul 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every first of the month" do
@@ -190,6 +194,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Thu, 01 Aug 2013 09:00:00 EDT -04:00', 'Sun, 01 Sep 2013 09:00:00 EDT -04:00', 'Tue, 01 Oct 2013 09:00:00 EDT -04:00', 'Fri, 01 Nov 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Tue, 02 Jul 2013 09:00:00 EDT -04:00', 'Fri, 02 Aug 2013 09:00:00 EDT -04:00', 'Mon, 02 Sep 2013 09:00:00 EDT -04:00', 'Wed, 02 Oct 2013 09:00:00 EDT -04:00', 'Sat, 02 Nov 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every first  and 15th of the month" do
@@ -216,6 +221,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Mon, 01 Jul 2013 09:00:00 EDT -04:00', 'Mon, 15 Jul 2013 09:00:00 EDT -04:00', 'Thu, 01 Aug 2013 09:00:00 EDT -04:00', 'Thu, 15 Aug 2013 09:00:00 EDT -04:00', 'Sun, 01 Sep 2013 09:00:00 EDT -04:00'])
+   expect(event.schedule.first(5)).not_to eq(['Wed, 03 Jul 2013 09:00:00 EDT -04:00', 'Thu, 04 Jul 2013 09:00:00 EDT -04:00', 'Fri, 05 Jul 2013 09:00:00 EDT -04:00', 'Sat, 06 Jul 2013 09:00:00 EDT -04:00', 'Sun, 07 Jul 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every second friday of the month" do
@@ -242,6 +248,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Fri, 12 Jul 2013 09:00:00 EDT -04:00', 'Fri, 09 Aug 2013 09:00:00 EDT -04:00', 'Fri, 13 Sep 2013 09:00:00 EDT -04:00', 'Fri, 11 Oct 2013 09:00:00 EDT -04:00', 'Fri, 08 Nov 2013 09:00:00 EST -05:00'])
+   expect(event.schedule.first(5)).not_to eq(['Fri, 05 Jul 2013 09:00:00 EDT -04:00', 'Fri, 02 Aug 2013 09:00:00 EDT -04:00', 'Fri, 06 Sep 2013 09:00:00 EDT -04:00', 'Fri, 04 Oct 2013 09:00:00 EDT -04:00', 'Fri, 01 Nov 2013 09:00:00 EDT -04:00'])
   end
 
   it "happens every Dicember" do
@@ -269,6 +276,7 @@ describe Event do
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
    expect(event.schedule.first(5)).to eq(['Tue, 17 Dec 2013 09:00:00 EST -05:00', 'Wed, 17 Dec 2014 09:00:00 EST -05:00', 'Thu, 17 Dec 2015 09:00:00 EST -05:00', 'Sat, 17 Dec 2016 09:00:00 EST -05:00', 'Sun, 17 Dec 2017 09:00:00 EST -05:00'])
+   expect(event.schedule.first(5)).not_to eq(['Mon, 16 Dec 2013 09:00:00 EST -05:00', 'Tue, 16 Dec 2014 09:00:00 EST -05:00', 'Wed, 16 Dec 2015 09:00:00 EST -05:00', 'Fri, 16 Dec 2016 09:00:00 EST -05:00', 'Sat, 16 Dec 2017 09:00:00 EST -05:00'])
   end
 
   it "happens every third thurdsday" do
@@ -297,7 +305,8 @@ describe Event do
                            repeat_ends_on: 'Mon, 17 Jun 2013',
                            time_zone: 'Eastern Time (US & Canada)',
                            calendar_id: calendar.id)
-   expect(event.schedule.first(5)).to eq(['Fri, 15 Nov 2013 09:00:00 EST -05:00i', 'Thu, 21 Nov 2013 09:00:00 EST -05:00', 'Thu, 20 Nov 2014 09:00:00 EST -05:00', 'Fri, 21 Nov 2014 09:00:00 EST -05:00', 'Thu, 19 Nov 2015 09:00:00 EST -05:00'])
+   expect(event.schedule.first(5)).to eq(['Fri, 15 Nov 2013 09:00:00 EST -05:00', 'Thu, 21 Nov 2013 09:00:00 EST -05:00', 'Thu, 20 Nov 2014 09:00:00 EST -05:00', 'Fri, 21 Nov 2014 09:00:00 EST -05:00', 'Thu, 19 Nov 2015 09:00:00 EST -05:00'])
+   expect(event.schedule.first(5)).not_to eq(['Thu, 20 Jun 2013 09:00:00 EDT -04:00', 'Fri, 21 Jun 2013 09:00:00 EDT -04:00', 'Thu, 18 Jul 2013 09:00:00 EDT -04:00', 'Fri, 19 Jul 2013 09:00:00 EDT -04:00', 'Thu, 15 Aug 2013 09:00:00 EDT -04:00'])
   end
 end
 
