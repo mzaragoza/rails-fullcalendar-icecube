@@ -4,6 +4,10 @@
     Currently:
     = Time.now.strftime("%v %r")
   #calendar{:style => 'margin:1em 0;'}
+  -##popover-content
+    LOAD FORM HERE
+    %button Click
+    
 .span3
   %h1 Calendars
   %ul
@@ -25,7 +29,7 @@
   %h2 Today's Events
   %ul
     -events.map do |e| 
-      - if e.schedule.occurring_at? Time.now
+      - if (e.schedule.occurs_on? Date.today ) || (e.schedule.occurring_at? Time.now)
         %li
           = link_to e.name, event_path(e)
           - if e.is_all_day
@@ -93,8 +97,6 @@
                 }
             }
           ],
-
           eventResize: this.eventDropOrResize
       });
-      
 

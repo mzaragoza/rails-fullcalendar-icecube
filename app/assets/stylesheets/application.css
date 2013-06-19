@@ -3,17 +3,10 @@
  *= require jquery-minicolors
  *= require jquery.timepicker
  *= require bootstrap_and_overrides
- *= require fullcalendar
+ *= require fullcalendar1
  *= require fullcalendar.print
  *= require_self
  */
-
-html, body{
-  margin:0px;
-  padding:0px;
-  height:100%;
-  overflow:hidden;
-}
 
 #wrapper{
   width:978px;
@@ -31,3 +24,4 @@ html, body{
 #sidebar{
   width:200px;
 }
+

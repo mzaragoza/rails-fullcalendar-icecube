@@ -6,7 +6,7 @@
 //= require jquery-minicolors-simple_form
 //= require jquery.timepicker
 //= require datepair
-//= require fullcalendar
+//= require fullcalendar1
 //= require underscore
 //= require backbone
 
