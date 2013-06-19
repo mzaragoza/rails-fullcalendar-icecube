@@ -32,5 +32,7 @@ class EventsController < ApplicationController
     redirect_to root_path
   end
   def destroy
- end
+    event.destroy
+    redirect_to root_path
+  end
 end
