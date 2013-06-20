@@ -2722,7 +2722,7 @@
                 M = Jb(n, fa);
                 k += Y ? "<a href='" + Qa(Y) + "'" : "<div";
                 k += " class='" + W.join(" ") + "' style='position:absolute;z-index:8;left:" + r + "px;" + M + "'><div class='fc-event-inner fc-event-skin'" + (M ? " style='" + M + "'" : "") + ">";
-                if (!n.allDay && B.isStart) k += "<span class='fc-event-time'>" + Qa(T(n.start, n.end, fa("timeFormat"))) + "</span>";
+                if (!n.allDay && B.isStart) k += "<span class='fc-event-time'>" + Qa(T(n.start, n.end, fa("timeFormat"))) + " </span>";
                 k += "<span class='fc-event-title'>" + Qa(n.title) + "</span></div>";
                 if (B.isEnd && ra(n)) k += "<div class='ui-resizable-handle ui-resizable-" + (C ? "w" : "e") + "'>&nbsp;&nbsp;&nbsp;</div>";
                 k += "</" + (Y ?
