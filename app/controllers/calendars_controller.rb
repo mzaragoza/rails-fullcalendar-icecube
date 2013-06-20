@@ -14,9 +14,6 @@ class CalendarsController < ApplicationController
   def index
     #render :json => calendars.map{|c| {:key => c.id, :label => c.name}}, :layout => false
   end
-  def test
-    render :layout => false
-  end
 
   def create
     if calendar.save
