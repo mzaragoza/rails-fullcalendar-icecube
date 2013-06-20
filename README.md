@@ -10,4 +10,3 @@ And Full Calendar
 Demo
 http://rails-fullcalendar-icecube.herokuapp.com
 
-http://mikesmithdev.com/examples/calendar.aspx#

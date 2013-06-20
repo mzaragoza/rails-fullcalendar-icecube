@@ -15,6 +15,7 @@
       %li
         .minicolors-swatch
           %span{:style => "background-color: #{c.color};"}
+            = check_box_tag 'show_calendar_'+c.id.to_s, value = c.id.to_s, checked = true, :onchange => "reload_calendar()", :class => 'visable_calendars'
         = c.name
         = link_to 'x', calendar_path(c), :confirm => 'Are you sure you want to remove the calendar?', :method => :delete
   %br
@@ -66,6 +67,12 @@
                 = e.to_time.strftime('%I:%M %p')
 - content_for :footer do
   :javascript
+    function reload_calendar(){
+      var source = new Array();
+      var viewable_calendars = $('input:checkbox:checked.visable_calendars').map(function () {
+        return this.value;
+        }).get().join(',');
+      var calendar_url = '/event_instances.json?calendar_ids=' + viewable_calendars;
       var new_event_link = "#{new_event_path}"
       $('#calendar').fullCalendar({
         dayClick: function(date, allDay, jsEvent, view) {
@@ -85,7 +92,7 @@
           eventDrop: this.eventDropOrResize,
           eventSources: [
             {
-                url: '/event_instances.json',
+                url: calendar_url,
                 data: {
                     custom_param1: 'something',
                     custom_param2: 'somethingelse'
@@ -98,4 +105,5 @@
           eventResize: this.eventDropOrResize,
           timeFormat: 'h:mmtt{ - h:mmtt} '
       });
-
+    }
+    reload_calendar();
