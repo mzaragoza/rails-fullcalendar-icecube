@@ -30,7 +30,7 @@
   %h2 Today's Events
   %ul
     -events.map do |e| 
-      -# if (e.schedule.occurs_on? Date.today ) || (e.schedule.occurring_at? Time.now)
+      - if (e.schedule.occurs_on? Date.today ) || (e.schedule.occurring_at? Time.now)
         %li
           = link_to 'x', event_path(e), :confirm => 'Are you sure you want to remove the event?', :method => :delete
           = link_to e.name, event_path(e)
@@ -47,8 +47,7 @@
   - now = Time.now.strftime('%H%M').to_i
   %ul
     - events.map do |e|
-
-      -# if e.schedule.occurring_at? Time.now
+      - if e.schedule.occurring_at? Time.now
         -if e.is_all_day
           %li
             = link_to 'x', event_path(e), :confirm => 'Are you sure you want to remove the event?', :method => :delete
