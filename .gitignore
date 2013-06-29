@@ -11,3 +11,4 @@ tmp
 *.swo
 *.swn
 chromedriver.log
+public/assets/*
