@@ -48,7 +48,7 @@
   %ul
     - events.map do |e|
 
-      - if e.schedule.occurring_at? Time.now
+      -# if e.schedule.occurring_at? Time.now
         -if e.is_all_day
           %li
             = link_to 'x', event_path(e), :confirm => 'Are you sure you want to remove the event?', :method => :delete
