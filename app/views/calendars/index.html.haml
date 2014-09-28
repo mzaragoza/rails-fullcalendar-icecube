@@ -47,6 +47,7 @@
   - now = Time.now.strftime('%H%M').to_i
   %ul
     - events.map do |e|
+
       - if e.schedule.occurring_at? Time.now
         -if e.is_all_day
           %li
@@ -106,3 +107,4 @@
       });
     }
     reload_calendar();
+
