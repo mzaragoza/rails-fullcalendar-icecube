@@ -73,10 +73,7 @@
         }).get().join(',');
       var calendar_url = '/event_instances.json?calendar_ids=' + viewable_calendars;
       var new_event_link = "#{new_event_path}"
-
-      var calendarElement = $('#calendar');
-      calendarElement.fullCalendar('destroy'); // remove current calendar from DOM before reinstantiating it
-      calendarElement.fullCalendar({
+      $('#calendar').fullCalendar({
         dayClick: function(date, allDay, jsEvent, view) {
           document.location.href=new_event_link + "?start_date=" + date;
         },
@@ -109,4 +106,3 @@
       });
     }
     reload_calendar();
-
