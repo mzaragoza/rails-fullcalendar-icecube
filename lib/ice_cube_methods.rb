@@ -142,41 +142,53 @@ module IceCubeMethods
       s = IceCube::Schedule.new(starts_at, :ends_time => ends_at)
     end
     case repeats
-    when 'never'
-      s.add_recurrence_time(starts_at)
-    when 'daily'
-      s.add_recurrence_rule IceCube::Rule.daily(repeats_every_n_days)
-    when 'weekly'
-      days = repeats_weekly_each_days_of_the_week.map {|d| d.to_sym }
-      s.add_recurrence_rule IceCube::Rule.weekly(repeats_every_n_weeks).day(*days)
-    when 'monthly'
-      case repeats_monthly
-      when 'each'
-        s.add_recurrence_rule IceCube::Rule.monthly(repeats_every_n_months).day_of_month(*repeats_monthly_each_days_of_the_month)
-      when 'on'
-        h = {}
-        repeats_monthly_on_days_of_the_week.each do |day_of_the_week|
-          h[day_of_the_week.to_sym] = repeats_monthly_on_ordinals
+      when 'never'
+        s.add_recurrence_time(starts_at)
+      when 'daily'
+        r = IceCube::Rule.daily(repeats_every_n_days)
+        r = r.until(repeat_ends_on) if repeat_ends == 'on'
+        s.add_recurrence_rule r
+      when 'weekly'
+        days = repeats_weekly_each_days_of_the_week.map {|d| d.to_sym }
+        r = IceCube::Rule.weekly(repeats_every_n_weeks).day(*days)
+        r = r.until(repeat_ends_on) if repeat_ends == 'on'
+        s.add_recurrence_rule r
+      when 'monthly'
+        case repeats_monthly
+          when 'each'
+            r = IceCube::Rule.monthly(repeats_every_n_months).day_of_month(*repeats_monthly_each_days_of_the_month)
+            r = r.until(repeat_ends_on) if repeat_ends == 'on'
+            s.add_recurrence_rule r
+          when 'on'
+            h = {}
+            repeats_monthly_on_days_of_the_week.each do |day_of_the_week|
+              h[day_of_the_week.to_sym] = repeats_monthly_on_ordinals
+            end
+            r = IceCube::Rule.monthly(repeats_every_n_months).day_of_week(h)
+            r = r.until(repeat_ends_on) if repeat_ends == 'on'
+            s.add_recurrence_rule r
         end
-        s.add_recurrence_rule IceCube::Rule.monthly(repeats_every_n_months).day_of_week(h)
-      end
-    when 'yearly'
-      if repeats_yearly_on
-        h = {}
-        repeats_yearly_on_days_of_the_week.each do |day_of_the_week|
-          h[day_of_the_week.to_sym] = repeats_yearly_on_ordinals
+      when 'yearly'
+        if repeats_yearly_on
+          h = {}
+          repeats_yearly_on_days_of_the_week.each do |day_of_the_week|
+            h[day_of_the_week.to_sym] = repeats_yearly_on_ordinals
+          end
+          months = repeats_yearly_each_months_of_the_year.map {|m| m.to_sym }
+          r = IceCube::Rule.yearly(repeats_every_n_years).month_of_year(*months).day_of_week(h)
+          r = r.until(repeat_ends_on) if repeat_ends == 'on'
+          s.add_recurrence_rule r
+        else
+          months = repeats_yearly_each_months_of_the_year.map {|m| m.to_sym }
+          r = IceCube::Rule.yearly(repeats_every_n_years).month_of_year(*months)
+          r = r.until(repeat_ends_on) if repeat_ends == 'on'
+          s.add_recurrence_rule r
         end
-        months = repeats_yearly_each_months_of_the_year.map {|m| m.to_sym }
-        s.add_recurrence_rule IceCube::Rule.yearly(repeats_every_n_years).month_of_year(*months).day_of_week(h)
-      else
-        months = repeats_yearly_each_months_of_the_year.map {|m| m.to_sym }
-        s.add_recurrence_rule IceCube::Rule.yearly(repeats_every_n_years).month_of_year(*months)
-      end
     end
     return s
   end
 
-private
+  private
   def must_have_at_least_one_repeats_weekly_each_days_of_the_week
     if repeats_weekly_each_days_of_the_week.empty?
       errors.add(:base, "You must have at least one repeats weekly each days of the week")
