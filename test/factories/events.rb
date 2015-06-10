@@ -8,5 +8,12 @@ FactoryGirl.define do
     time_zone   'UTC'
     repeats     'never'
     calendar
+
+    factory :event_daily_repeat do
+      repeats               'daily'
+      repeats_every_n_days  1
+      repeat_ends           'on'
+      repeat_ends_on        Date.parse('2015/7/10') + 2.days
+    end
   end
 end
