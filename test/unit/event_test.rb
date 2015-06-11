@@ -33,6 +33,16 @@ describe Event do
       refute event_weekly_repeat.schedule.occurs_on?(next_wednesday)
     end
 
+    it "repeats the event monthly on certain days of the month" do
+      event_monthly_repeat_each = create :event_monthly_repeat_each
+
+      assert event_monthly_repeat_each.schedule.all_occurrences.length == 2
+      next_first = event_monthly_repeat_each.from_date.next_month - event_monthly_repeat_each.from_date.day.days + 1.days
+      assert event_monthly_repeat_each.schedule.occurs_on?(next_first)
+      next_second = event_monthly_repeat_each.from_date.next_month - event_monthly_repeat_each.from_date.day.days + 2.days
+      refute event_monthly_repeat_each.schedule.occurs_on?(next_second)
+    end
+
   end
 
 end
