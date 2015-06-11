@@ -51,5 +51,16 @@ FactoryGirl.define do
       repeat_ends                              'on'
       repeat_ends_on                           Date.parse('2015/7/10') + 2.years
     end
+
+    factory :event_yearly_repeat_on do
+      repeats                                  'yearly'
+      repeats_yearly_on                        true
+      repeats_yearly_on_days_of_the_week       ['sunday', 'monday']
+      repeats_yearly_on_ordinals               [0, 1]
+      repeats_yearly_each_months_of_the_year   ['january']
+      repeats_every_n_years                    1
+      repeat_ends                              'on'
+      repeat_ends_on                           Date.parse('2015/7/10') + 2.years
+    end
   end
 end
