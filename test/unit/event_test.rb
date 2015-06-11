@@ -43,6 +43,17 @@ describe Event do
       refute event_monthly_repeat_each.schedule.occurs_on?(next_second)
     end
 
+    it "repeats the event monthly on certain days of the week" do
+      event_monthly_repeat_on = create :event_monthly_repeat_on
+
+      assert event_monthly_repeat_on.schedule.all_occurrences.length == 4
+      first_sunday_of_next_month = event_monthly_repeat_on.from_date.next_month - event_monthly_repeat_on.from_date.day.days + 1.days
+      first_sunday_of_next_month += 7.days - first_sunday_of_next_month.wday.days
+      assert event_monthly_repeat_on.schedule.occurs_on? first_sunday_of_next_month
+      third_sunday_of_next_month = first_sunday_of_next_month + 2.weeks
+      refute event_monthly_repeat_on.schedule.occurs_on? third_sunday_of_next_month
+    end
+
   end
 
 end

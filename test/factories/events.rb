@@ -32,5 +32,15 @@ FactoryGirl.define do
       repeat_ends                              'on'
       repeat_ends_on                           Date.parse('2015/7/10').months_since(2)
     end
+
+    factory :event_monthly_repeat_on do
+      repeats                               'monthly'
+      repeats_monthly                       'on'
+      repeats_monthly_on_days_of_the_week   ['sunday', 'monday']
+      repeats_monthly_on_ordinals           [0, 1]
+      repeats_every_n_months                1
+      repeat_ends                           'on'
+      repeat_ends_on                        Date.parse('2015/7/10').months_since(2)
+    end
   end
 end
