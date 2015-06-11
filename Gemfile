@@ -33,6 +33,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'pry-rails'
   gem 'minitest-rails', '~> 1.0.1'
   gem 'factory_girl_rails'
 end
