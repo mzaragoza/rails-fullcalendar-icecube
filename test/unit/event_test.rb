@@ -54,6 +54,16 @@ describe Event do
       refute event_monthly_repeat_on.schedule.occurs_on? third_sunday_of_next_month
     end
 
+    it "repeats the event yearly" do
+      event_yearly_repeat = create :event_yearly_repeat
+
+      assert event_yearly_repeat.schedule.all_occurrences.length == 4
+      next_january = (event_yearly_repeat.from_date + 1.year).beginning_of_year + event_yearly_repeat.from_date.day.days - 1.days
+      assert event_yearly_repeat.schedule.occurs_on? next_january
+      next_march = next_january.months_since(2)
+      refute event_yearly_repeat.schedule.occurs_on? next_march
+    end
+
   end
 
 end

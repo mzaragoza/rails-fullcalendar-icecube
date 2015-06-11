@@ -42,5 +42,14 @@ FactoryGirl.define do
       repeat_ends                           'on'
       repeat_ends_on                        Date.parse('2015/7/10').months_since(2)
     end
+
+    factory :event_yearly_repeat do
+      repeats                                  'yearly'
+      repeats_yearly_on                        false
+      repeats_yearly_each_months_of_the_year   ['january', 'february']
+      repeats_every_n_years                    1
+      repeat_ends                              'on'
+      repeat_ends_on                           Date.parse('2015/7/10') + 2.years
+    end
   end
 end
