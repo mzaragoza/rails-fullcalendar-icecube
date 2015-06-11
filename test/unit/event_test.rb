@@ -22,7 +22,17 @@ describe Event do
       assert event_daily_repeat.schedule.occurs_on?(event_daily_repeat.from_date + 2.days)
       refute event_daily_repeat.schedule.occurs_on?(event_daily_repeat.from_date + 3.days)
     end
-    
+
+    it "repeats the event weekly" do
+      event_weekly_repeat = create :event_weekly_repeat
+
+      assert event_weekly_repeat.schedule.all_occurrences.length == 4
+      next_sunday = event_weekly_repeat.from_date - event_weekly_repeat.from_date.wday.days + 7.days
+      assert event_weekly_repeat.schedule.occurs_on?(next_sunday)
+      next_wednesday = event_weekly_repeat.from_date - event_weekly_repeat.from_date.wday.days + 9.days
+      refute event_weekly_repeat.schedule.occurs_on?(next_wednesday)
+    end
+
   end
 
 end
