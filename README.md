@@ -10,3 +10,5 @@ And Full Calendar
 Demo
 http://rails-fullcalendar-icecube.herokuapp.com
 
+Run tests with `RAILS_ENV=test rake test`
+

@@ -33,11 +33,8 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'debugger'
-  gem 'debugger-ruby_core_source' #, github: 'cldwalker/debugger-ruby_core_source'
-  gem 'populator'
-  gem 'rspec-rails', '~> 2.0'
-  gem 'capybara'
-  gem 'gem-open'
+  gem 'pry-rails'
+  gem 'minitest-rails', '~> 1.0.1'
+  gem 'factory_girl_rails'
 end
 
